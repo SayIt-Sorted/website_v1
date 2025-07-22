@@ -28,39 +28,20 @@ function App() {
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
-    const email = formData.get('email') as string;
-    
     if (!email || !email.includes('@')) return;
 
     setIsLoading(true);
     
-    try {
-      // Submit to Netlify Forms
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString(),
-      });
-      
-      if (response.ok) {
-        setIsSubmitted(true);
-        (e.target as HTMLFormElement).reset();
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      // Fallback to localStorage if Netlify fails
-      const existingEmails = JSON.parse(localStorage.getItem('waitlist_emails') || '[]');
-      if (!existingEmails.includes(email)) {
-        existingEmails.push(email);
-        localStorage.setItem('waitlist_emails', JSON.stringify(existingEmails));
-      }
-      setIsSubmitted(true);
-      (e.target as HTMLFormElement).reset();
-    }
+    // Redirect to Google Form with email pre-filled
+    const googleFormUrl = `https://docs.google.com/forms/d/e/1FAIpQLSeHqd2XydA2M8OntRtDVv1CtQ9gD-5_a4xdYCyZM2S3BC6hag/viewform?usp=pp_url&entry.962810985=${encodeURIComponent(email)}`;
+    window.open(googleFormUrl, '_blank');
     
+    setIsSubmitted(true);
+    setEmail('');
     setIsLoading(false);
   };
+
+
 
 
 
@@ -338,18 +319,18 @@ function App() {
               </p>
               <div className="email-signup">
                 {!isSubmitted ? (
-                  <form name="waitlist" method="POST" data-netlify="true" onSubmit={handleEmailSubmit}>
-                    <input type="hidden" name="form-name" value="waitlist" />
+                  <form onSubmit={handleEmailSubmit}>
                     <input 
                       type="email" 
-                      name="email"
                       placeholder="Enter your email for exclusive access"
                       className="email-input"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       required
                     />
                     <button 
                       type="submit" 
-                      className="signup-button"
+                      className="signup-button" 
                       disabled={isLoading}
                     >
                       {isLoading ? 'Submitting...' : 'Request Early Access'}
