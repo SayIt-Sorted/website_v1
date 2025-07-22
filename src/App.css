@@ -910,6 +910,12 @@
     height: 48px;
   }
   
+  .nav-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    height: 38px;
+  }
+  
   .hero {
     padding: 6rem 1rem 3rem;
   }
@@ -1150,6 +1156,12 @@
   
   .nav-logo-img {
     height: 40px;
+  }
+  
+  .nav-button {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+    height: 36px;
   }
   
   .feature-card {
