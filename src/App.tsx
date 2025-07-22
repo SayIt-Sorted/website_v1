@@ -36,13 +36,14 @@ function App() {
             </div>
             
             <h1 className="hero-title">
-              Stop Googling "Best WiFi Cafes Near Me"
-              <span className="hero-title-highlight"> Every Week</span>
+              10 Minutes to
+              <span className="hero-title-highlight"> AI Travel Planning</span>
             </h1>
             
             <p className="hero-description">
-              Your AI travel agent knows you need reliable WiFi, good coffee, and a quiet spot to crush deadlines. 
-              One 10-minute call gets you a complete itinerary that actually works for remote work.
+              Skip the endless research. Your AI travel agent books flights, finds coworking spaces, 
+              and plans your entire digital nomad trip in one 10-minute call. 
+              Because life's too short for 47 open browser tabs.
             </p>
 
             <div className="hero-stats">
@@ -229,7 +230,7 @@ function App() {
         <div className="container">
           <div className="coming-soon-content">
             <h2>🚀 Launching Q4 2025</h2>
-            <p>Skip the endless Google tabs. Stop asking your Instagram followers for travel advice. 
+            <p>Stop asking your Instagram followers for travel advice. 
                Let AI do the heavy lifting while you focus on your next deadline.</p>
             <div className="email-signup">
               <input 
