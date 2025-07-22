@@ -42,22 +42,46 @@ function App() {
             
             <p className="hero-description">
               Stop Googling "best coworking Lisbon" at 2am. Your AI travel buddy handles flights, 
-              finds those mythical WiFi spots that actually work, and plans your whole nomad adventure. 
+              finds WiFi spots that actually work, and plans your whole nomad adventure. 
               No more browser tab chaos. No more "Is this café laptop-friendly?" anxiety.
             </p>
 
             <div className="hero-stats">
               <div className="stat">
+                <div className="stat-icon">📊</div>
                 <div className="stat-number">47</div>
-                <div className="stat-label">Avg Browser Tabs</div>
+                <div className="stat-label">Browser Tabs Saved</div>
+                <div className="stat-subtitle">Per trip planning</div>
               </div>
               <div className="stat">
+                <div className="stat-icon">⏰</div>
                 <div className="stat-number">3AM</div>
-                <div className="stat-label">When You Usually Plan</div>
+                <div className="stat-label">Planning Time</div>
+                <div className="stat-subtitle">When you give up</div>
               </div>
               <div className="stat">
-                <div className="stat-number">0</div>
-                <div className="stat-label">Time for This BS</div>
+                <div className="stat-icon">🤖</div>
+                <div className="stat-number">AI</div>
+                <div className="stat-label">Cost Optimization</div>
+                <div className="stat-subtitle">Smart algorithms</div>
+              </div>
+              <div className="stat">
+                <div className="stat-icon">🔒</div>
+                <div className="stat-number">100%</div>
+                <div className="stat-label">Secure</div>
+                <div className="stat-subtitle">Actually secure</div>
+              </div>
+              <div className="stat">
+                <div className="stat-icon">⚡</div>
+                <div className="stat-number">10min</div>
+                <div className="stat-label">Faster Than Standup</div>
+                <div className="stat-subtitle">Quick & efficient</div>
+              </div>
+              <div className="stat">
+                <div className="stat-icon">🌍</div>
+                <div className="stat-number">Global</div>
+                <div className="stat-label">Works Everywhere</div>
+                <div className="stat-subtitle">Unlike hotel WiFi</div>
               </div>
             </div>
 
@@ -69,21 +93,6 @@ function App() {
               <button className="cta-secondary" onClick={handleEmailClick}>
                 See the Magic
               </button>
-            </div>
-            
-            <div className="trust-indicators">
-              <div className="trust-item">
-                <span className="trust-icon">🔒</span>
-                <span>Actually Secure</span>
-              </div>
-              <div className="trust-item">
-                <span className="trust-icon">⚡</span>
-                <span>Faster Than Your Last Standup</span>
-              </div>
-              <div className="trust-item">
-                <span className="trust-icon">🌍</span>
-                <span>Works Everywhere (Unlike Hotel WiFi)</span>
-              </div>
             </div>
           </div>
 
