@@ -22,10 +22,16 @@ function App() {
       </nav>
 
       <main className="hero">
+        <div className="hero-background">
+          <div className="gradient-orb orb-1"></div>
+          <div className="gradient-orb orb-2"></div>
+          <div className="gradient-orb orb-3"></div>
+        </div>
+        
         <div className="hero-content">
           <div className="hero-left">
             <div className="hero-badge">
-              <span className="badge-icon">🚀</span>
+              <span className="badge-icon">⚡</span>
               <span>AI-Powered Travel Platform</span>
             </div>
             
@@ -35,9 +41,9 @@ function App() {
             </h1>
             
             <p className="hero-description">
-              Have a 10-minute call with our AI travel agent and get a complete 
-              itinerary tailored to your remote work lifestyle. From flights to 
-              coworking spaces, we handle everything.
+              Skip the endless research. Have a 10-minute call with our AI travel agent 
+              and get a complete itinerary tailored to your remote work lifestyle. 
+              From flights to coworking spaces, we handle everything.
             </p>
 
             <div className="hero-stats">
@@ -63,6 +69,21 @@ function App() {
               <button className="cta-secondary" onClick={handleEmailClick}>
                 Watch Demo
               </button>
+            </div>
+            
+            <div className="trust-indicators">
+              <div className="trust-item">
+                <span className="trust-icon">🔒</span>
+                <span>Secure & Private</span>
+              </div>
+              <div className="trust-item">
+                <span className="trust-icon">⚡</span>
+                <span>10-Minute Setup</span>
+              </div>
+              <div className="trust-item">
+                <span className="trust-icon">🌍</span>
+                <span>Global Coverage</span>
+              </div>
             </div>
           </div>
 
