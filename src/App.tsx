@@ -240,7 +240,7 @@ function App() {
                 <img src={flightIcon} alt="Flight Booking" />
               </div>
               <h3>No more flight apps</h3>
-              <p>AI finds you the perfect flight without requiring 10+ tabs exploding dynamic pricing</p>
+              <p>Find  the perfect flight without 10+ tabs exploding dynamic pricing</p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">
