@@ -11,9 +11,7 @@ import homeIcon from './icons/home.png';
 import monitorIcon from './icons/monitor.png';
 import transportIcon from './icons/transport.png';
 import peopleIcon from './icons/people.png';
-import mapIcon from './icons/map.svg';
 import mapPngIcon from './icons/map.png';
-import clockIcon from './icons/clock.svg';
 
 function App() {
   const [email, setEmail] = useState('');
