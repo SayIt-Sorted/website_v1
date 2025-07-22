@@ -543,98 +543,143 @@
 
 /* Coming Soon Section */
 .coming-soon-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 6rem 0;
+  background: #f8fafc;
+  color: #1a1a1a;
+  padding: 8rem 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .coming-soon-content {
-  text-align: center;
-  max-width: 800px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
 }
 
-.coming-soon-content h2 {
-  font-size: 3rem;
-  font-weight: 800;
+.coming-soon-text {
+  text-align: left;
+}
+
+.launch-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  color: #4f46e5;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   margin-bottom: 1.5rem;
 }
 
+.coming-soon-content h2 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  color: #1a1a1a;
+}
+
 .coming-soon-content p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 2.5rem;
-  opacity: 0.95;
-  line-height: 1.6;
+  line-height: 1.7;
+  color: #666;
+  text-align: left;
 }
 
-.coming-soon-features {
+.coming-soon-features-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.feature-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.feature-list-icon {
+  font-size: 1.25rem;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  margin-top: 2rem;
+  background: #eef2ff;
+  border-radius: 12px;
+  color: #4f46e5;
 }
 
-.feature-pill {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
+.feature-list-text {
+  display: flex;
+  flex-direction: column;
 }
 
-.feature-pill:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
+.feature-list-text strong {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  margin-bottom: 0.25rem;
+}
+
+.feature-list-text span {
+  color: #666;
+  line-height: 1.5;
 }
 
 .email-signup {
   display: flex;
-  gap: 1rem;
-  max-width: 500px;
-  margin: 0 auto 2rem;
+  gap: 0.5rem;
+  max-width: none;
+  margin: 0;
 }
 
 .email-input {
   flex: 1;
-  padding: 1rem 1.5rem;
-  border: none;
+  padding: 1rem 1.25rem;
+  border: 1px solid #d1d5db;
   border-radius: 12px;
   font-size: 1rem;
-  background: rgba(255, 255, 255, 0.95);
+  background: #fff;
   color: #1a1a1a;
-  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
 }
 
 .email-input::placeholder {
-  color: #666;
+  color: #9ca3af;
 }
 
 .email-input:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
 }
 
 .signup-button {
-  background: white;
-  color: #667eea;
+  background: #4f46e5;
+  color: white;
   border: none;
-  padding: 1rem 2rem;
+  padding: 1rem 1.75rem;
   border-radius: 12px;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
+  box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.3);
 }
 
 .signup-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  background: #4338ca;
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
 }
 
 /* Responsive Design */
@@ -660,6 +705,27 @@
     flex-direction: column;
     gap: 1rem;
     align-items: flex-start;
+  }
+  
+  .coming-soon-content {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    text-align: center;
+  }
+
+  .coming-soon-text {
+    text-align: center;
+  }
+  
+  .coming-soon-content h2,
+  .coming-soon-content p {
+    text-align: center;
+  }
+
+  .email-signup {
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
   }
 }
 
@@ -779,17 +845,8 @@
   
   .email-signup {
     flex-direction: column;
-  }
-  
-  .coming-soon-features {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .feature-pill {
     width: 100%;
-    max-width: 300px;
-    text-align: center;
+    max-width: 350px;
   }
   
   .conversation-card {
@@ -798,6 +855,29 @@
   
   .gradient-orb {
     display: none;
+  }
+
+  .coming-soon-features-list {
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .feature-list-item {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .feature-list-text {
+    text-align: center;
+  }
+
+  .coming-soon-content h2 {
+    font-size: 2.25rem;
+  }
+  
+  .coming-soon-content p {
+    font-size: 1rem;
   }
 }
 
@@ -853,15 +933,11 @@
     padding: 0.75rem;
     font-size: 0.85rem;
   }
-  
+
   .coming-soon-content h2 {
     font-size: 2rem;
   }
-  
-  .coming-soon-content p {
-    font-size: 1rem;
-  }
-  
+
   .email-signup {
     flex-direction: column;
   }

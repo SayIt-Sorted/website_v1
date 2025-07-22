@@ -42,47 +42,29 @@ function App() {
             
             <p className="hero-description">
               Stop Googling "best coworking Lisbon" at 2am. Your AI travel buddy handles flights, 
-              finds those mythical WiFi spots that actually work, and plans your whole nomad adventure. 
+              finds WiFi spots that actually work, and plans your whole nomad adventure. 
               No more browser tab chaos. No more "Is this café laptop-friendly?" anxiety.
             </p>
 
-            <div className="hero-stats">
-              <div className="stat">
-                <div className="stat-number">Built by</div>
-                <div className="stat-label">Remote Workers</div>
-              </div>
-              <div className="stat">
-                <div className="stat-number">For</div>
-                <div className="stat-label">Remote Workers</div>
-              </div>
-              <div className="stat">
-                <div className="stat-number">Finally</div>
-                <div className="stat-label">Something That Works</div>
-              </div>
-            </div>
-
             <div className="hero-cta">
               <button className="cta-primary" onClick={handleEmailClick}>
-                Book Your AI Call
+                Speak to your AI travel buddy
                 <span className="cta-arrow">→</span>
-              </button>
-              <button className="cta-secondary" onClick={handleEmailClick}>
-                See the Magic
               </button>
             </div>
             
             <div className="trust-indicators">
               <div className="trust-item">
-                <span className="trust-icon">🔒</span>
-                <span>Actually Secure</span>
+                <span className="trust-icon">😎</span>
+                <span>By Nomads, For Nomads</span>
               </div>
               <div className="trust-item">
-                <span className="trust-icon">⚡</span>
-                <span>Faster Than Your Last Standup</span>
+                <span className="trust-icon">📈</span>
+                <span>Save 10+ Hours Per Trip</span>
               </div>
               <div className="trust-item">
-                <span className="trust-icon">🌍</span>
-                <span>Works Everywhere (Unlike Hotel WiFi)</span>
+                <span className="trust-icon">✅</span>
+                <span>100% Human-Vetted Spots</span>
               </div>
             </div>
           </div>
@@ -229,23 +211,46 @@ function App() {
       <section className="coming-soon-section">
         <div className="container">
           <div className="coming-soon-content">
-            <h2>🚀 Dropping Q4 2025</h2>
-            <p>Stop asking your Instagram followers where to work in Bali. 
-               Let AI handle the logistics while you handle your actual job.</p>
-            <div className="email-signup">
-              <input 
-                type="email" 
-                placeholder="Your work email (no spam, pinky promise)"
-                className="email-input"
-                value="joao@sayitsorted.com"
-                readOnly
-              />
-              <button className="signup-button" onClick={handleEmailClick}>Get Me on This List</button>
+            <div className="coming-soon-text">
+              <div className="launch-badge">Launching soon in 2025</div>
+              <h2>The Future of Work-Travel Arrives.</h2>
+              <p>
+                Ditch the endless research and social media polls. Our AI curates your entire 
+                work-travel experience, from hyper-reliable WiFi to the perfect desk setup abroad.
+              </p>
+              <div className="email-signup">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email for exclusive access"
+                  className="email-input"
+                  value="joao@sayitsorted.com"
+                  readOnly
+                />
+                <button className="signup-button" onClick={handleEmailClick}>Request Early Access</button>
+              </div>
             </div>
-            <div className="coming-soon-features">
-              <div className="feature-pill">🎯 End the "where should I go?" spiral</div>
-              <div className="feature-pill">⚡ 10 minutes vs 10 hours of research hell</div>
-              <div className="feature-pill">🌍 Your laptop works everywhere (even Bali)</div>
+            <div className="coming-soon-features-list">
+              <div className="feature-list-item">
+                <span className="feature-list-icon">🎯</span>
+                <div className="feature-list-text">
+                  <strong>End the Guesswork.</strong>
+                  <span>Stop the "where should I go?" spiral for good.</span>
+                </div>
+              </div>
+              <div className="feature-list-item">
+                <span className="feature-list-icon">⚡</span>
+                <div className="feature-list-text">
+                  <strong>Save 10+ Hours.</strong>
+                  <span>Swap endless research for a single, productive AI call.</span>
+                </div>
+              </div>
+              <div className="feature-list-item">
+                <span className="feature-list-icon">🌍</span>
+                <div className="feature-list-text">
+                  <strong>Travel with Confidence.</strong>
+                  <span>Get access to a global network of vetted, work-friendly spots.</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
