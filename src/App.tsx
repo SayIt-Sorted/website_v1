@@ -41,7 +41,7 @@ function App() {
             </h1>
             
             <p className="hero-description">
-              Skip the endless research. Have a 10-minute call with our AI travel agent 
+              Skip the endless search. Have a 10-minute call with our AI travel agent 
               and get a complete itinerary tailored to your remote work lifestyle. 
               From flights to coworking spaces, we handle everything.
             </p>
@@ -229,7 +229,7 @@ function App() {
       <section className="coming-soon-section">
         <div className="container">
           <div className="coming-soon-content">
-            <h2>Coming Q4 2025</h2>
+            <h2>Coming soon...</h2>
             <p>Be among the first to experience AI-powered travel planning</p>
             <div className="email-signup">
               <input 
