@@ -40,6 +40,21 @@ function App() {
               coworking spaces, we handle everything.
             </p>
 
+            <div className="hero-stats">
+              <div className="stat">
+                <div className="stat-number">$1.3T</div>
+                <div className="stat-label">Remote Work Market</div>
+              </div>
+              <div className="stat">
+                <div className="stat-number">35M+</div>
+                <div className="stat-label">Digital Nomads</div>
+              </div>
+              <div className="stat">
+                <div className="stat-number">$2.4T</div>
+                <div className="stat-label">Travel Industry</div>
+              </div>
+            </div>
+
             <div className="hero-cta">
               <button className="cta-primary" onClick={handleEmailClick}>
                 Book Your AI Call
@@ -53,17 +68,37 @@ function App() {
 
           <div className="hero-right">
             <div className="hero-visual">
-              <div className="floating-card card-1">
-                <div className="card-icon">🤖</div>
-                <div className="card-text">"Hi! I'm your AI travel agent. Tell me about your dream trip..."</div>
-              </div>
-              <div className="floating-card card-2">
-                <div className="card-icon">📅</div>
-                <div className="card-text">"I need WiFi, good coffee, and a quiet workspace"</div>
-              </div>
-              <div className="floating-card card-3">
-                <div className="card-icon">✅</div>
-                <div className="card-text">"Perfect! Here's your complete 3-month itinerary"</div>
+              <div className="call-container">
+                <div className="call-header">
+                  <div className="call-status">
+                    <span className="call-dot"></span>
+                    <span className="call-text">AI Travel Agent</span>
+                  </div>
+                  <div className="call-time">00:32</div>
+                </div>
+                <div className="call-messages">
+                  <div className="message ai-message">
+                    <div className="message-avatar">🤖</div>
+                    <div className="message-content">
+                      <div className="message-text">Hi! I'm your AI travel agent. Tell me about your dream trip...</div>
+                      <div className="message-time">00:05</div>
+                    </div>
+                  </div>
+                  <div className="message user-message">
+                    <div className="message-content">
+                      <div className="message-text">I need WiFi, good coffee, and a quiet workspace</div>
+                      <div className="message-time">00:18</div>
+                    </div>
+                    <div className="message-avatar">👤</div>
+                  </div>
+                  <div className="message ai-message">
+                    <div className="message-avatar">🤖</div>
+                    <div className="message-content">
+                      <div className="message-text">Perfect! Here's your complete 3-month itinerary</div>
+                      <div className="message-time">00:32</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
