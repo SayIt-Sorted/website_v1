@@ -20,47 +20,48 @@ function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleEmailClick = () => {
-    window.location.href = 'mailto:joao@sayitsorted.com';
+  const handleAboutClick = () => {
+    document.getElementById('about-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleEarlyAccessClick = () => {
+    document.querySelector('.coming-soon-section')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const email = formData.get('email') as string;
+    
     if (!email || !email.includes('@')) return;
 
     setIsLoading(true);
     
     try {
-      // Send to Google Sheet via Apps Script
-      const response = await fetch('https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbyqJ6KbXcTwo3admgK8M4Q8_Fe6Wrl1SAyJiDz01xADVLXmXtEbi5XT5lDxtU6JdbsQ/exec/exec', {
+      // Submit to Netlify Forms
+      const response = await fetch('/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email,
-          timestamp: new Date().toISOString(),
-          source: 'sayitsorted-website'
-        })
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString(),
       });
-
+      
       if (response.ok) {
         setIsSubmitted(true);
-        setEmail('');
-      } else {
-        throw new Error('Failed to submit');
+        (e.target as HTMLFormElement).reset();
       }
     } catch (error) {
-      console.error('Error saving email:', error);
-      // Fallback to localStorage if Google Sheet fails
-      const existingEmails = JSON.parse(localStorage.getItem('earlyAccessEmails') || '[]');
-      const newEmailList = [...existingEmails, { email, timestamp: new Date().toISOString() }];
-      localStorage.setItem('earlyAccessEmails', JSON.stringify(newEmailList));
+      console.error('Error submitting form:', error);
+      // Fallback to localStorage if Netlify fails
+      const existingEmails = JSON.parse(localStorage.getItem('waitlist_emails') || '[]');
+      if (!existingEmails.includes(email)) {
+        existingEmails.push(email);
+        localStorage.setItem('waitlist_emails', JSON.stringify(existingEmails));
+      }
       setIsSubmitted(true);
-      setEmail('');
-    } finally {
-      setIsLoading(false);
+      (e.target as HTMLFormElement).reset();
     }
+    
+    setIsLoading(false);
   };
 
 
@@ -73,8 +74,8 @@ function App() {
             <img src={logoComplete} alt="Say It. Sorted" className="nav-logo-img" />
           </div>
           <div className="nav-actions">
-            <button className="nav-button secondary" onClick={handleEmailClick}>About</button>
-            <button className="nav-button primary" onClick={handleEmailClick}>Get Early Access</button>
+            <button className="nav-button secondary" onClick={handleAboutClick}>About</button>
+            <button className="nav-button primary" onClick={handleEarlyAccessClick}>Get Early Access</button>
           </div>
         </div>
       </nav>
@@ -105,7 +106,7 @@ function App() {
             </p>
 
             <div className="hero-cta">
-              <button className="cta-primary" onClick={handleEmailClick}>
+              <button className="cta-primary" onClick={handleEarlyAccessClick}>
                 <svg className="cta-icon" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19c-.54 0-.99.45-.99.99 0 9.36 7.6 16.96 16.96 16.96.54 0 .99-.45.99-.99v-3.5c0-.54-.45-.99-.99-.99z"/>
                 </svg>
@@ -286,6 +287,47 @@ function App() {
         </div>
       </section>
 
+      {/* About Section */}
+      <section id="about-section" className="about-section">
+        <div className="container">
+          <div className="about-content">
+            <div className="about-text">
+              <div className="founder-badge">🎬</div>
+              <h2>Meet the Founder</h2>
+              <p>
+                From midnight Googling "best coworking Lisbon" to building the AI travel buddy 
+                that actually gets it. Our founder's journey from digital nomad chaos to 
+                creating the solution we all needed.
+              </p>
+              <div className="video-placeholder">
+                <div className="video-container">
+                  <div className="video-background">
+                    <div className="geometric-shapes">
+                      <div className="shape shape-1"></div>
+                      <div className="shape shape-2"></div>
+                      <div className="shape shape-3"></div>
+                    </div>
+                    <div className="data-visualization">
+                      <div className="data-line data-line-1"></div>
+                      <div className="data-line data-line-2"></div>
+                      <div className="data-line data-line-3"></div>
+                    </div>
+                  </div>
+                  <div className="play-button">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                  <div className="video-overlay">
+                    <span className="coming-soon-text">Founder Story Coming Soon</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="coming-soon-section">
         <div className="container">
           <div className="coming-soon-content">
@@ -298,18 +340,18 @@ function App() {
               </p>
               <div className="email-signup">
                 {!isSubmitted ? (
-                  <form onSubmit={handleEmailSubmit}>
+                  <form name="waitlist" method="POST" data-netlify="true" onSubmit={handleEmailSubmit}>
+                    <input type="hidden" name="form-name" value="waitlist" />
                     <input 
                       type="email" 
+                      name="email"
                       placeholder="Enter your email for exclusive access"
                       className="email-input"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
                       required
                     />
                     <button 
                       type="submit" 
-                      className="signup-button" 
+                      className="signup-button"
                       disabled={isLoading}
                     >
                       {isLoading ? 'Submitting...' : 'Request Early Access'}
@@ -317,7 +359,6 @@ function App() {
                   </form>
                 ) : (
                   <div className="success-message">
-                    <span>✅ Thanks! We'll notify you when we launch.</span>
                     <button 
                       onClick={() => setIsSubmitted(false)} 
                       className="try-again-button"
