@@ -30,7 +30,7 @@ function App() {
             </div>
             
             <h1 className="hero-title">
-              Plan Your Perfect Trip in
+              Work Remotely from Anywhere in
               <span className="hero-title-highlight"> 10 Minutes</span>
             </h1>
             
@@ -68,36 +68,93 @@ function App() {
 
           <div className="hero-right">
             <div className="hero-visual">
-              <div className="call-container">
-                <div className="call-header">
-                  <div className="call-status">
-                    <span className="call-dot"></span>
-                    <span className="call-text">AI Travel Agent</span>
+              <div className="conversation-card card-1">
+                <div className="card-header">
+                  <div className="speaker-info">
+                    <div className="speaker-avatar ai-avatar">
+                      <svg className="avatar-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                        <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                        <circle cx="12" cy="12" r="2"/>
+                        <circle cx="8" cy="8" r="1"/>
+                        <circle cx="16" cy="8" r="1"/>
+                        <circle cx="8" cy="16" r="1"/>
+                        <circle cx="16" cy="16" r="1"/>
+                      </svg>
+                    </div>
+                    <div className="speaker-details">
+                      <div className="speaker-name">AI Travel Agent</div>
+                      <div className="speaking-status">
+                        <div className="voice-indicator">
+                          <div className="voice-dot"></div>
+                          <div className="voice-dot"></div>
+                          <div className="voice-dot"></div>
+                        </div>
+                        <span className="status-text">Speaking</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="call-time">00:32</div>
                 </div>
-                <div className="call-messages">
-                  <div className="message ai-message">
-                    <div className="message-avatar">🤖</div>
-                    <div className="message-content">
-                      <div className="message-text">Hi! I'm your AI travel agent. Tell me about your dream trip...</div>
-                      <div className="message-time">00:05</div>
+                <div className="card-message">
+                  "Hi! I'm your AI travel agent. Tell me about your dream trip..."
+                </div>
+              </div>
+              
+              <div className="conversation-card card-2">
+                <div className="card-header">
+                  <div className="speaker-info">
+                    <div className="speaker-avatar user-avatar">
+                      <svg className="avatar-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"/>
+                      </svg>
+                    </div>
+                    <div className="speaker-details">
+                      <div className="speaker-name">You</div>
+                      <div className="speaking-status">
+                        <div className="voice-indicator">
+                          <div className="voice-dot"></div>
+                          <div className="voice-dot"></div>
+                          <div className="voice-dot"></div>
+                        </div>
+                        <span className="status-text">Speaking</span>
+                      </div>
                     </div>
                   </div>
-                  <div className="message user-message">
-                    <div className="message-content">
-                      <div className="message-text">I need WiFi, good coffee, and a quiet workspace</div>
-                      <div className="message-time">00:18</div>
+                </div>
+                <div className="card-message">
+                  "I need WiFi, good coffee, and a quiet workspace"
+                </div>
+              </div>
+              
+              <div className="conversation-card card-3">
+                <div className="card-header">
+                  <div className="speaker-info">
+                    <div className="speaker-avatar ai-avatar">
+                      <svg className="avatar-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                        <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                        <circle cx="12" cy="12" r="2"/>
+                        <circle cx="8" cy="8" r="1"/>
+                        <circle cx="16" cy="8" r="1"/>
+                        <circle cx="8" cy="16" r="1"/>
+                        <circle cx="16" cy="16" r="1"/>
+                      </svg>
                     </div>
-                    <div className="message-avatar">👤</div>
-                  </div>
-                  <div className="message ai-message">
-                    <div className="message-avatar">🤖</div>
-                    <div className="message-content">
-                      <div className="message-text">Perfect! Here's your complete 3-month itinerary</div>
-                      <div className="message-time">00:32</div>
+                    <div className="speaker-details">
+                      <div className="speaker-name">AI Travel Agent</div>
+                      <div className="speaking-status">
+                        <div className="voice-indicator">
+                          <div className="voice-dot"></div>
+                          <div className="voice-dot"></div>
+                          <div className="voice-dot"></div>
+                        </div>
+                        <span className="status-text">Speaking</span>
+                      </div>
                     </div>
                   </div>
+                </div>
+                <div className="card-message">
+                  "Perfect! Here's your complete 3-month itinerary"
                 </div>
               </div>
             </div>
