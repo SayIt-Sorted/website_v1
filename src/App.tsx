@@ -1,11 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logoComplete from './logo_complete.png';
 import './App.css';
 
+// Import icons
+import verifiedIcon from './icons/verified.svg';
+import onlineIcon from './icons/online.svg';
+import communityIcon from './icons/community.svg';
+import flightIcon from './icons/flight.png';
+import homeIcon from './icons/home.png';
+import monitorIcon from './icons/monitor.png';
+import transportIcon from './icons/transport.png';
+import peopleIcon from './icons/people.png';
+import mapIcon from './icons/map.svg';
+import mapPngIcon from './icons/map.png';
+import clockIcon from './icons/clock.svg';
+
 function App() {
+  const [email, setEmail] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleEmailClick = () => {
     window.location.href = 'mailto:joao@sayitsorted.com';
   };
+
+  const handleEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !email.includes('@')) return;
+
+    setIsLoading(true);
+    
+    try {
+      // Send to Google Sheet via Apps Script
+      const response = await fetch('https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbyqJ6KbXcTwo3admgK8M4Q8_Fe6Wrl1SAyJiDz01xADVLXmXtEbi5XT5lDxtU6JdbsQ/exec/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          timestamp: new Date().toISOString(),
+          source: 'sayitsorted-website'
+        })
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setEmail('');
+      } else {
+        throw new Error('Failed to submit');
+      }
+    } catch (error) {
+      console.error('Error saving email:', error);
+      // Fallback to localStorage if Google Sheet fails
+      const existingEmails = JSON.parse(localStorage.getItem('earlyAccessEmails') || '[]');
+      const newEmailList = [...existingEmails, { email, timestamp: new Date().toISOString() }];
+      localStorage.setItem('earlyAccessEmails', JSON.stringify(newEmailList));
+      setIsSubmitted(true);
+      setEmail('');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+
 
   return (
     <div className="App">
@@ -48,23 +106,30 @@ function App() {
 
             <div className="hero-cta">
               <button className="cta-primary" onClick={handleEmailClick}>
-                Speak to your AI travel buddy
+                <span className="cta-icon">🤖</span>
+                Start Your 10-Minute Adventure
                 <span className="cta-arrow">→</span>
               </button>
             </div>
             
             <div className="trust-indicators">
               <div className="trust-item">
-                <span className="trust-icon">😎</span>
+                <span className="trust-icon">
+                  <img src={verifiedIcon} alt="Verified" />
+                </span>
                 <span>By Nomads, For Nomads</span>
               </div>
               <div className="trust-item">
-                <span className="trust-icon">📈</span>
-                <span>Save 10+ Hours Per Trip</span>
+                <span className="trust-icon">
+                  <img src={onlineIcon} alt="Always Online" />
+                </span>
+                <span>Always Online, Always Available</span>
               </div>
               <div className="trust-item">
-                <span className="trust-icon">✅</span>
-                <span>100% Human-Vetted Spots</span>
+                <span className="trust-icon">
+                  <img src={communityIcon} alt="Community" />
+                </span>
+                <span>Join the Global Nomad Community</span>
               </div>
             </div>
           </div>
@@ -170,37 +235,49 @@ function App() {
           <h2 className="section-title">One Call, Zero Stress, All Sorted</h2>
           <div className="features-grid">
             <div className="feature-card">
-              <div className="feature-icon">✈️</div>
-              <h3>Flight Booking That Doesn't Suck</h3>
-              <p>AI finds flights that actually fit your timezone-confused schedule</p>
+              <div className="feature-icon">
+                <img src={flightIcon} alt="Flight Booking" />
+              </div>
+              <h3>No more flight apps</h3>
+              <p>AI finds you the perfect flight without requiring 10+ tabs exploding dynamic pricing</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🏠</div>
-              <h3>Places That Get Remote Work</h3>
-              <p>Accommodations with real WiFi speeds and actual desks (revolutionary, we know)</p>
+              <div className="feature-icon">
+                <img src={homeIcon} alt="Accommodation" />
+              </div>
+              <h3>Accommodations That Fit</h3>
+              <p>With places where you can get work done</p>
               <div className="soon-badge">SOON</div>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">💼</div>
-              <h3>Coworking Spaces That Work</h3>
-              <p>Book spots where you can actually focus without someone's TikTok blasting</p>
+              <div className="feature-icon">
+                <img src={monitorIcon} alt="Coworking" />
+              </div>
+              <h3>Find Coworking Spaces</h3>
+              <p>Book spots or find cafes where without "wifi" or "no-laptop zone" anxiety</p>
               <div className="soon-badge">SOON</div>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🚌</div>
-              <h3>Ground Transport That Makes Sense</h3>
-              <p>Buses and trains that won't make you miss your Monday deadline</p>
+              <div className="feature-icon">
+                <img src={transportIcon} alt="Transport" />
+              </div>
+              <h3>Get to your actual destination</h3>
+              <p>Include trains and buses so you can budget correctly</p>
               <div className="soon-badge">SOON</div>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">👥</div>
-              <h3>Fellow Humans Who Get It</h3>
-              <p>Connect with nomads who understand the struggle of finding good lunch spots</p>
+              <div className="feature-icon">
+                <img src={peopleIcon} alt="Community" />
+              </div>
+              <h3>Connect with a community</h3>
+              <p>Meet other nomads who understand the struggle of finding good lunch spots</p>
               <div className="soon-badge">SOON</div>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🗺️</div>
-              <h3>Itineraries That Actually Work</h3>
+              <div className="feature-icon">
+                <img src={mapPngIcon} alt="Itineraries" />
+              </div>
+              <h3>Itineraries For Adventurers</h3>
               <p>Day-by-day plans that account for your weird working hours and caffeine needs</p>
               <div className="soon-badge">SOON</div>
             </div>
@@ -219,33 +296,60 @@ function App() {
                 work-travel experience, from hyper-reliable WiFi to the perfect desk setup abroad.
               </p>
               <div className="email-signup">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email for exclusive access"
-                  className="email-input"
-                  value="joao@sayitsorted.com"
-                  readOnly
-                />
-                <button className="signup-button" onClick={handleEmailClick}>Request Early Access</button>
+                {!isSubmitted ? (
+                  <form onSubmit={handleEmailSubmit}>
+                    <input 
+                      type="email" 
+                      placeholder="Enter your email for exclusive access"
+                      className="email-input"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                    <button 
+                      type="submit" 
+                      className="signup-button" 
+                      disabled={isLoading}
+                    >
+                      {isLoading ? 'Submitting...' : 'Request Early Access'}
+                    </button>
+                  </form>
+                ) : (
+                  <div className="success-message">
+                    <span>✅ Thanks! We'll notify you when we launch.</span>
+                    <button 
+                      onClick={() => setIsSubmitted(false)} 
+                      className="try-again-button"
+                    >
+                      Add Another Email
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
             <div className="coming-soon-features-list">
               <div className="feature-list-item">
-                <span className="feature-list-icon">🎯</span>
+                <span className="feature-list-icon">
+                  🎯
+                </span>
                 <div className="feature-list-text">
                   <strong>End the Guesswork.</strong>
                   <span>Stop the "where should I go?" spiral for good.</span>
                 </div>
               </div>
               <div className="feature-list-item">
-                <span className="feature-list-icon">⚡</span>
+                <span className="feature-list-icon">
+                  ⚡
+                </span>
                 <div className="feature-list-text">
                   <strong>Save 10+ Hours.</strong>
                   <span>Swap endless research for a single, productive AI call.</span>
                 </div>
               </div>
               <div className="feature-list-item">
-                <span className="feature-list-icon">🌍</span>
+                <span className="feature-list-icon">
+                  🌍
+                </span>
                 <div className="feature-list-text">
                   <strong>Travel with Confidence.</strong>
                   <span>Get access to a global network of vetted, work-friendly spots.</span>
