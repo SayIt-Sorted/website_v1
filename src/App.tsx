@@ -32,32 +32,32 @@ function App() {
           <div className="hero-left">
             <div className="hero-badge">
               <span className="badge-icon">⚡</span>
-              <span>For Digital Nomads Who Actually Work</span>
+              <span>For Remote Workers Who Actually Get Sh*t Done</span>
             </div>
             
             <h1 className="hero-title">
-              10 Minutes to
-              <span className="hero-title-highlight"> AI Travel Planning</span>
+              One 10-Minute Call.
+              <span className="hero-title-highlight"> Your Entire Trip Sorted.</span>
             </h1>
             
             <p className="hero-description">
-              Skip the endless research. Your AI travel agent books flights, finds coworking spaces, 
-              and plans your entire digital nomad trip in one 10-minute call. 
-              Because life's too short for 47 open browser tabs.
+              Stop Googling "best coworking Lisbon" at 2am. Your AI travel buddy handles flights, 
+              finds those mythical WiFi spots that actually work, and plans your whole nomad adventure. 
+              No more browser tab chaos. No more "Is this café laptop-friendly?" anxiety.
             </p>
 
             <div className="hero-stats">
               <div className="stat">
-                <div className="stat-number">$1.3T</div>
-                <div className="stat-label">Remote Work Market</div>
+                <div className="stat-number">47</div>
+                <div className="stat-label">Avg Browser Tabs</div>
               </div>
               <div className="stat">
-                <div className="stat-number">35M+</div>
-                <div className="stat-label">Digital Nomads</div>
+                <div className="stat-number">3AM</div>
+                <div className="stat-label">When You Usually Plan</div>
               </div>
               <div className="stat">
-                <div className="stat-number">$2.4T</div>
-                <div className="stat-label">Travel Industry</div>
+                <div className="stat-number">0</div>
+                <div className="stat-label">Time for This BS</div>
               </div>
             </div>
 
@@ -67,22 +67,22 @@ function App() {
                 <span className="cta-arrow">→</span>
               </button>
               <button className="cta-secondary" onClick={handleEmailClick}>
-                See How It Works
+                See the Magic
               </button>
             </div>
             
             <div className="trust-indicators">
               <div className="trust-item">
                 <span className="trust-icon">🔒</span>
-                <span>Secure & Private</span>
+                <span>Actually Secure</span>
               </div>
               <div className="trust-item">
                 <span className="trust-icon">⚡</span>
-                <span>10-Minute Setup</span>
+                <span>Faster Than Your Last Standup</span>
               </div>
               <div className="trust-item">
                 <span className="trust-icon">🌍</span>
-                <span>Global Coverage</span>
+                <span>Works Everywhere (Unlike Hotel WiFi)</span>
               </div>
             </div>
           </div>
@@ -104,7 +104,7 @@ function App() {
                       </svg>
                     </div>
                     <div className="speaker-details">
-                      <div className="speaker-name">AI Travel Agent</div>
+                      <div className="speaker-name">Your AI Travel Buddy</div>
                       <div className="speaking-status">
                         <div className="voice-indicator">
                           <div className="voice-dot"></div>
@@ -117,7 +117,7 @@ function App() {
                   </div>
                 </div>
                 <div className="card-message">
-                  "Hi! I'm your AI travel agent. Tell me about your dream trip..."
+                  "Alright, let's plan your escape. Where's your laptop taking you next?"
                 </div>
               </div>
               
@@ -143,7 +143,7 @@ function App() {
                   </div>
                 </div>
                 <div className="card-message">
-                  "I need WiFi, good coffee, and a quiet workspace"
+                  "Somewhere with decent coffee and WiFi that won't drop during client calls"
                 </div>
               </div>
               
@@ -162,7 +162,7 @@ function App() {
                       </svg>
                     </div>
                     <div className="speaker-details">
-                      <div className="speaker-name">AI Travel Agent</div>
+                      <div className="speaker-name">Your AI Travel Buddy</div>
                       <div className="speaking-status">
                         <div className="voice-indicator">
                           <div className="voice-dot"></div>
@@ -175,7 +175,7 @@ function App() {
                   </div>
                 </div>
                 <div className="card-message">
-                  "Perfect! Here's your complete 3-month itinerary"
+                  "Say no more. I've got your complete itinerary ready!"
                 </div>
               </div>
             </div>
@@ -185,41 +185,41 @@ function App() {
 
       <section className="features-section">
         <div className="container">
-          <h2 className="section-title">One AI Call, Your Travel Sorted</h2>
+          <h2 className="section-title">One Call, Zero Stress, All Sorted</h2>
           <div className="features-grid">
             <div className="feature-card">
               <div className="feature-icon">✈️</div>
-              <h3>Smart Flight Booking</h3>
-              <p>AI finds the best routes, prices, and times for your schedule</p>
+              <h3>Flight Booking That Doesn't Suck</h3>
+              <p>AI finds flights that actually fit your timezone-confused schedule</p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">🏠</div>
-              <h3>Remote Worker Accommodation</h3>
-              <p>Stays with reliable WiFi, workspaces, and digital nomad communities</p>
+              <h3>Places That Get Remote Work</h3>
+              <p>Accommodations with real WiFi speeds and actual desks (revolutionary, we know)</p>
               <div className="soon-badge">SOON</div>
             </div>
             <div className="feature-card">
               <div className="feature-icon">💼</div>
-              <h3>Coworking Spaces</h3>
-              <p>Book productive workspaces with meeting rooms and networking events</p>
+              <h3>Coworking Spaces That Work</h3>
+              <p>Book spots where you can actually focus without someone's TikTok blasting</p>
               <div className="soon-badge">SOON</div>
             </div>
             <div className="feature-card">
               <div className="feature-icon">🚌</div>
-              <h3>Bus & Train Routes</h3>
-              <p>Find the best ground transportation options for your journey</p>
+              <h3>Ground Transport That Makes Sense</h3>
+              <p>Buses and trains that won't make you miss your Monday deadline</p>
               <div className="soon-badge">SOON</div>
             </div>
             <div className="feature-card">
               <div className="feature-icon">👥</div>
-              <h3>Digital Nomad Community</h3>
-              <p>Connect with other remote workers in your destination</p>
+              <h3>Fellow Humans Who Get It</h3>
+              <p>Connect with nomads who understand the struggle of finding good lunch spots</p>
               <div className="soon-badge">SOON</div>
             </div>
             <div className="feature-card">
               <div className="feature-icon">🗺️</div>
-              <h3>Complete Itinerary Planning</h3>
-              <p>AI creates detailed day-by-day plans based on your preferences</p>
+              <h3>Itineraries That Actually Work</h3>
+              <p>Day-by-day plans that account for your weird working hours and caffeine needs</p>
               <div className="soon-badge">SOON</div>
             </div>
           </div>
@@ -229,23 +229,23 @@ function App() {
       <section className="coming-soon-section">
         <div className="container">
           <div className="coming-soon-content">
-            <h2>🚀 Launching Q4 2025</h2>
-            <p>Stop asking your Instagram followers for travel advice. 
-               Let AI do the heavy lifting while you focus on your next deadline.</p>
+            <h2>🚀 Dropping Q4 2025</h2>
+            <p>Stop asking your Instagram followers where to work in Bali. 
+               Let AI handle the logistics while you handle your actual job.</p>
             <div className="email-signup">
               <input 
                 type="email" 
-                placeholder="Your work email (we promise, no spam)"
+                placeholder="Your work email (no spam, pinky promise)"
                 className="email-input"
                 value="joao@sayitsorted.com"
                 readOnly
               />
-              <button className="signup-button" onClick={handleEmailClick}>Join the Waitlist</button>
+              <button className="signup-button" onClick={handleEmailClick}>Get Me on This List</button>
             </div>
             <div className="coming-soon-features">
-              <div className="feature-pill">🎯 No more "where should I go?" paralysis</div>
-              <div className="feature-pill">⚡ 10-minute calls, not 10-hour research</div>
-              <div className="feature-pill">🌍 Because your laptop works everywhere</div>
+              <div className="feature-pill">🎯 End the "where should I go?" spiral</div>
+              <div className="feature-pill">⚡ 10 minutes vs 10 hours of research hell</div>
+              <div className="feature-pill">🌍 Your laptop works everywhere (even Bali)</div>
             </div>
           </div>
         </div>
