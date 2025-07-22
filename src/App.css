@@ -918,6 +918,12 @@
   
   .hero {
     padding: 6rem 1rem 3rem;
+    min-height: auto;
+  }
+  
+  .hero-right {
+    min-height: auto;
+    height: auto;
   }
   
   .hero-title {
@@ -1033,6 +1039,8 @@
     margin-bottom: 2rem;
     position: relative !important;
     animation: none !important;
+    min-height: auto;
+    height: auto;
   }
   
   .card-1, .card-2, .card-3 {
@@ -1065,6 +1073,8 @@
     font-size: 1rem;
     line-height: 1.5;
     word-wrap: break-word;
+    overflow: visible;
+    white-space: normal;
   }
   
   .speaker-name {
@@ -1202,12 +1212,23 @@
     width: 100%;
   }
   
+  .hero {
+    min-height: auto;
+  }
+  
+  .hero-right {
+    min-height: auto;
+    height: auto;
+  }
+  
   .conversation-card {
     max-width: 280px;
     width: 100%;
     margin-bottom: 1.5rem;
     position: relative !important;
     animation: none !important;
+    min-height: auto;
+    height: auto;
   }
   
   .card-1, .card-2, .card-3 {
@@ -1240,6 +1261,8 @@
     font-size: 0.95rem;
     line-height: 1.4;
     word-wrap: break-word;
+    overflow: visible;
+    white-space: normal;
   }
   
   .speaker-name {
