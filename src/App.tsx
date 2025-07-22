@@ -229,7 +229,7 @@ function App() {
       <section className="coming-soon-section">
         <div className="container">
           <div className="coming-soon-content">
-            <h2>🚀 Dropping Q4 2025</h2>
+            <h2>🚀 Dropping soon in 2025</h2>
             <p>Stop asking your Instagram followers where to work in Bali. 
                Let AI handle the logistics while you handle your actual job.</p>
             <div className="email-signup">
