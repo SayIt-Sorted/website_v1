@@ -12,7 +12,7 @@ function App() {
       <nav className="navbar">
         <div className="nav-container">
           <div className="nav-logo">
-            <img src={logoComplete} alt="Say It Sort It" className="nav-logo-img" />
+            <img src={logoComplete} alt="Say It. Sorted" className="nav-logo-img" />
           </div>
           <div className="nav-actions">
             <button className="nav-button secondary" onClick={handleEmailClick}>About</button>
