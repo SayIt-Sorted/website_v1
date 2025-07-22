@@ -529,30 +529,60 @@
 
 /* Coming Soon Section */
 .coming-soon-section {
-  padding: 6rem 2rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  padding: 6rem 0;
+}
+
+.coming-soon-content {
   text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .coming-soon-content h2 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 800;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .coming-soon-content p {
-  font-size: 1.25rem;
-  margin-bottom: 3rem;
-  opacity: 0.9;
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+.coming-soon-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.feature-pill {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.feature-pill:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
 }
 
 .email-signup {
   display: flex;
   gap: 1rem;
   max-width: 500px;
-  margin: 0 auto;
-  align-items: center;
+  margin: 0 auto 2rem;
 }
 
 .email-input {
@@ -561,19 +591,18 @@
   border: none;
   border-radius: 12px;
   font-size: 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a1a1a;
   backdrop-filter: blur(10px);
-  cursor: pointer;
 }
 
 .email-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: #666;
 }
 
 .email-input:focus {
   outline: none;
-  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
 }
 
 .signup-button {
@@ -586,6 +615,7 @@
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .signup-button:hover {
@@ -619,6 +649,7 @@
   }
 }
 
+/* Enhanced Mobile Styles for Stats and Trust Indicators */
 @media (max-width: 768px) {
   .nav-container {
     padding: 0 1rem;
@@ -641,12 +672,69 @@
   }
   
   .hero-stats {
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .stat {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 1.5rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .stat-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
   
   .hero-cta {
     flex-direction: column;
     align-items: stretch;
+  }
+  
+  .trust-indicators {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .trust-item {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+  }
+  
+  .trust-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .trust-icon {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    display: block;
   }
   
   .features-section,
@@ -666,6 +754,17 @@
     flex-direction: column;
   }
   
+  .coming-soon-features {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .feature-pill {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+  
   .conversation-card {
     max-width: 280px;
   }
@@ -681,8 +780,16 @@
   }
   
   .hero-stats {
-    flex-direction: column;
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .stat {
+    padding: 1.25rem 1rem;
+  }
+  
+  .stat-number {
+    font-size: 1.75rem;
   }
   
   .nav-logo-img {
@@ -698,6 +805,32 @@
     right: 0.75rem;
     font-size: 0.7rem;
     padding: 0.2rem 0.6rem;
+  }
+  
+  .trust-indicators {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .trust-item {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+  
+  .coming-soon-content h2 {
+    font-size: 2rem;
+  }
+  
+  .coming-soon-content p {
+    font-size: 1rem;
+  }
+  
+  .email-signup {
+    flex-direction: column;
+  }
+  
+  .signup-button {
+    width: 100%;
   }
   
   .conversation-card {

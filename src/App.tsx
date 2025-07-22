@@ -32,18 +32,17 @@ function App() {
           <div className="hero-left">
             <div className="hero-badge">
               <span className="badge-icon">⚡</span>
-              <span>AI-Powered Travel Platform</span>
+              <span>For Digital Nomads Who Actually Work</span>
             </div>
             
             <h1 className="hero-title">
-              Work Remotely from Anywhere in
-              <span className="hero-title-highlight"> 10 Minutes</span>
+              Stop Googling "Best WiFi Cafes Near Me"
+              <span className="hero-title-highlight"> Every Week</span>
             </h1>
             
             <p className="hero-description">
-              Skip the endless search. Have a 10-minute call with our AI travel agent 
-              and get a complete itinerary tailored to your remote work lifestyle. 
-              From flights to coworking spaces, we handle everything.
+              Your AI travel agent knows you need reliable WiFi, good coffee, and a quiet spot to crush deadlines. 
+              One 10-minute call gets you a complete itinerary that actually works for remote work.
             </p>
 
             <div className="hero-stats">
@@ -67,7 +66,7 @@ function App() {
                 <span className="cta-arrow">→</span>
               </button>
               <button className="cta-secondary" onClick={handleEmailClick}>
-                Watch Demo
+                See How It Works
               </button>
             </div>
             
@@ -185,7 +184,7 @@ function App() {
 
       <section className="features-section">
         <div className="container">
-          <h2 className="section-title">One AI Call, Complete Travel Solution</h2>
+          <h2 className="section-title">One AI Call, Your Travel Sorted</h2>
           <div className="features-grid">
             <div className="feature-card">
               <div className="feature-icon">✈️</div>
@@ -229,17 +228,23 @@ function App() {
       <section className="coming-soon-section">
         <div className="container">
           <div className="coming-soon-content">
-            <h2>Coming soon...</h2>
-            <p>Be among the first to experience AI-powered travel planning</p>
+            <h2>🚀 Launching Q4 2025</h2>
+            <p>Skip the endless Google tabs. Stop asking your Instagram followers for travel advice. 
+               Let AI do the heavy lifting while you focus on your next deadline.</p>
             <div className="email-signup">
               <input 
                 type="email" 
-                placeholder="Enter your email address"
+                placeholder="Your work email (we promise, no spam)"
                 className="email-input"
                 value="joao@sayitsorted.com"
                 readOnly
               />
-              <button className="signup-button" onClick={handleEmailClick}>Get Early Access</button>
+              <button className="signup-button" onClick={handleEmailClick}>Join the Waitlist</button>
+            </div>
+            <div className="coming-soon-features">
+              <div className="feature-pill">🎯 No more "where should I go?" paralysis</div>
+              <div className="feature-pill">⚡ 10-minute calls, not 10-hour research</div>
+              <div className="feature-pill">🌍 Because your laptop works everywhere</div>
             </div>
           </div>
         </div>
