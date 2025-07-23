@@ -37,7 +37,7 @@ const ChatInterface: React.FC = () => {
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
   // Updated to use the deployed API URL
-  const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://travel-chatbot-3ai3qvrip-joao-esteves-projects.vercel.app';
+  const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://travel-chatbot-ten.vercel.app';
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -137,19 +137,8 @@ const ChatInterface: React.FC = () => {
       
       // Check if this is the current API response format (deployed version)
       if (data.status === 'success' && data.message === 'POST request received') {
-        // This is the deployed API response - provide a helpful message
-        botMessage = `I received your travel request! 🎉
-
-I'm currently setting up the full AI travel booking system. Your request has been logged and I'm working on processing it.
-
-For now, I can help you with:
-• Travel planning advice
-• Destination recommendations
-• Budget considerations
-
-The complete booking system with flight search and accommodation will be available soon!
-
-Would you like me to help you plan your trip while the booking system is being set up?`;
+        // This is the deployed API response - use the actual AI response
+        botMessage = data.response?.message || 'I received your travel request! 🎉';
       } else if (data.response?.message) {
         // Handle the expected API response format
         botMessage = data.response.message;
