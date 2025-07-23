@@ -9,8 +9,11 @@ interface Message {
 }
 
 interface ChatResponse {
-  session_id: string;
-  response: {
+  status: string;
+  message: string;
+  path: string;
+  session_id?: string;
+  response?: {
     message: string;
     type: string;
   };
@@ -20,7 +23,7 @@ const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: "Hi! I'm your AI travel assistant. I can help you book complete trips with flights and accommodation. Just tell me where you want to go, when, and your budget!",
+      content: "Hi! I'm your AI travel assistant. The API is connected and ready! I can help you book complete trips with flights and accommodation. Just tell me where you want to go, when, and your budget!",
       isUser: false,
       timestamp: new Date()
     }
@@ -47,7 +50,7 @@ const ChatInterface: React.FC = () => {
     checkConnection();
     const interval = setInterval(checkConnection, 30000);
     return () => clearInterval(interval);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const checkConnection = async () => {
     try {
@@ -122,13 +125,24 @@ const ChatInterface: React.FC = () => {
       }
 
       const data: ChatResponse = await response.json();
-      setSessionId(data.session_id);
-
-      // Add bot response to chat
-      addMessage(data.response.message);
+      
+      // Handle the new API response format
+      if (data.session_id) {
+        setSessionId(data.session_id);
+      }
+      
+      // Add bot response to chat - use the main message or response.message
+      const botMessage = data.response?.message || data.message || 'I received your message!';
+      
+      // Check if this is just an acknowledgment response
+      if (data.message === 'POST request received') {
+        addMessage('I received your message! The AI processing is currently being set up. Please check back soon for full travel booking functionality.');
+      } else {
+        addMessage(botMessage);
+      }
 
       // If this was a complete request, show a new session message
-      if (data.response.type === 'complete') {
+      if (data.response?.type === 'complete') {
         setTimeout(() => {
           addMessage('Ready to plan another trip? Just tell me where you\'d like to go next!');
         }, 1000);
