@@ -9,14 +9,15 @@ interface Message {
 }
 
 interface ChatResponse {
-  status: string;
-  message: string;
-  path: string;
-  session_id?: string;
-  response?: {
+  session_id: string;
+  response: {
     type: string;
     message: string;
     session_id: string;
+    extraction?: any;
+    travel_request?: any;
+    package?: any;
+    email_sent?: boolean;
   };
 }
 
@@ -86,13 +87,11 @@ const ChatInterface: React.FC = () => {
         setSessionId(data.session_id);
       }
       
-      // Get the bot message
+      // Get the bot message from the new API format
       let botMessage = 'I received your message!';
       
-      if (data.status === 'success' && data.response?.message) {
+      if (data.response?.message) {
         botMessage = data.response.message;
-      } else if (data.message) {
-        botMessage = data.message;
       }
       
       addMessage(botMessage);
