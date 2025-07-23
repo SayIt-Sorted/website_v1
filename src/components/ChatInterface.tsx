@@ -9,13 +9,11 @@ interface Message {
 }
 
 interface ChatResponse {
-  status: string;
-  message: string;
-  path: string;
-  session_id?: string;
-  response?: {
-    message: string;
+  session_id: string;
+  response: {
     type: string;
+    message: string;
+    session_id: string;
   };
 }
 
@@ -65,7 +63,7 @@ const ChatInterface: React.FC = () => {
     } catch (error) {
       // If health check fails, try the main chat endpoint to see if API is available
       try {
-        const testResponse = await fetch(`${API_BASE_URL}/chat`, {
+        const testResponse = await fetch(`${API_BASE_URL}/api/chat`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -109,7 +107,7 @@ const ChatInterface: React.FC = () => {
 
     try {
       // Updated to use the correct chat endpoint for the deployed API
-      const response = await fetch(`${API_BASE_URL}/chat`, {
+      const response = await fetch(`${API_BASE_URL}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -131,11 +129,11 @@ const ChatInterface: React.FC = () => {
         setSessionId(data.session_id);
       }
       
-      // Add bot response to chat - use the main message or response.message
-      const botMessage = data.response?.message || data.message || 'I received your message!';
+      // Add bot response to chat - use the response.message
+      const botMessage = data.response?.message || 'I received your message!';
       
       // Check if this is just an acknowledgment response
-      if (data.message === 'POST request received') {
+      if (data.response?.message === 'POST request received') {
         addMessage('I received your message! The AI processing is currently being set up. Please check back soon for full travel booking functionality.');
       } else {
         addMessage(botMessage);
