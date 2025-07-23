@@ -23,7 +23,7 @@ const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: "Hi! I'm your AI travel assistant. I'm ready to help you plan your trips! I can provide travel advice, destination recommendations, and help you plan your travel budget. Just tell me where you want to go, when, and your budget!",
+      content: "Yo! I'm your AI travel buddy. Ready to turn your laptop into a passport? Just tell me where you want to go, when, and your budget - I'll handle the rest. No more 3am Googling sessions! 🚀",
       isUser: false,
       timestamp: new Date()
     }
@@ -61,25 +61,37 @@ const ChatInterface: React.FC = () => {
     setInputMessage('');
     setIsLoading(true);
 
-    const response = await fetch(`${API_BASE_URL}/api/chat`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        message: message,
-        session_id: sessionId
-      })
-    });
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: message,
+          session_id: sessionId
+        })
+      });
 
-    const data: ChatResponse = await response.json();
-    
-    setSessionId(data.session_id);
-    
-    const botMessage = data.response.message;
-    addMessage(botMessage);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
-    setIsLoading(false);
+      const data: ChatResponse = await response.json();
+      
+      if (data.session_id) {
+        setSessionId(data.session_id);
+      }
+      
+      const botMessage = data.response?.message || 'Got it! Let me work my magic... ✨';
+      addMessage(botMessage);
+
+    } catch (error) {
+      console.error('Error:', error);
+      addMessage('Oops! Something went sideways. Let\'s try that again? 🔄');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -102,8 +114,8 @@ const ChatInterface: React.FC = () => {
   return (
     <div className="chat-container">
       <div className="chat-header">
-        <h1>✈️ Travel Booking AI</h1>
-        <p>Tell me where you want to go and I'll find the best travel package for you!</p>
+        <h1>✈️ Your AI Travel Buddy</h1>
+        <p>Stop Googling. Start Going. Let's plan your next adventure! 🌍</p>
       </div>
 
       <div className="chat-messages">
@@ -121,7 +133,7 @@ const ChatInterface: React.FC = () => {
       </div>
 
       <div className="status connected">
-        ✅ Connected to travel chatbot API
+        ✅ Connected to your AI travel buddy
       </div>
 
       {showExamples && (
@@ -148,7 +160,7 @@ const ChatInterface: React.FC = () => {
             type="text"
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
-            placeholder="Tell me where you want to go..."
+            placeholder="Where's your laptop taking you next?"
             disabled={isLoading}
             className="chat-input"
           />
