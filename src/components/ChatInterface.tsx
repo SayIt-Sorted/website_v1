@@ -13,8 +13,6 @@ interface ChatResponse {
   response: {
     type: string;
     message: string;
-    session_id: string;
-    extraction?: any;
     travel_request?: any;
     package?: any;
     email_sent?: boolean;
@@ -25,7 +23,7 @@ const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: "Hi! I'm your AI travel assistant. The API is connected and I'm ready to help you plan your trips! I can provide travel advice, destination recommendations, and help you plan your travel budget. Just tell me where you want to go, when, and your budget!",
+      content: "Hi! I'm your AI travel assistant. I'm ready to help you plan your trips! I can provide travel advice, destination recommendations, and help you plan your travel budget. Just tell me where you want to go, when, and your budget!",
       isUser: false,
       timestamp: new Date()
     }
@@ -59,49 +57,29 @@ const ChatInterface: React.FC = () => {
   const sendMessage = async (message: string) => {
     if (!message.trim()) return;
 
-    // Add user message to chat
     addMessage(message, true);
     setInputMessage('');
     setIsLoading(true);
 
-    try {
-      const response = await fetch(`${API_BASE_URL}/api/chat`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: message,
-          session_id: sessionId
-        })
-      });
+    const response = await fetch(`${API_BASE_URL}/api/chat`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        message: message,
+        session_id: sessionId
+      })
+    });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+    const data: ChatResponse = await response.json();
+    
+    setSessionId(data.session_id);
+    
+    const botMessage = data.response.message;
+    addMessage(botMessage);
 
-      const data: ChatResponse = await response.json();
-      
-      // Handle the API response format
-      if (data.session_id) {
-        setSessionId(data.session_id);
-      }
-      
-      // Get the bot message from the new API format
-      let botMessage = 'I received your message!';
-      
-      if (data.response?.message) {
-        botMessage = data.response.message;
-      }
-      
-      addMessage(botMessage);
-
-    } catch (error) {
-      console.error('Error:', error);
-      addMessage('Sorry, I encountered an error. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
+    setIsLoading(false);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
