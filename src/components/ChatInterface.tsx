@@ -23,7 +23,7 @@ const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: "Yo! I'm your AI travel buddy. Ready to turn your laptop into a passport? Just tell me where you want to go, when, and your budget - I'll handle the rest. No more 3am Googling sessions! 🚀",
+      content: "Hey! I'm your AI travel buddy. Ready to turn your laptop into a passport? Just tell me where you want to go, when, and your budget - I'll handle the rest. No more 3am Googling sessions! 🚀",
       isUser: false,
       timestamp: new Date()
     }
@@ -160,7 +160,7 @@ const ChatInterface: React.FC = () => {
             type="text"
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
-            placeholder="Where's your laptop taking you next?"
+            placeholder="Where's your laptop taking you?"
             disabled={isLoading}
             className="chat-input"
           />
