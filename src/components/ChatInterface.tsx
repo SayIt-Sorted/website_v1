@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ChatInterface.css';
+import logo from '../logo.png';
 
 interface Message {
   id: string;
@@ -23,7 +24,7 @@ const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: "Hey! I'm your AI travel buddy. Ready to turn your laptop into a passport? Just tell me where you want to go, when, and your budget - I'll handle the rest. No more 3am Googling sessions! 🚀",
+      content: "Hey nomad! 🌍 Ready to turn your laptop into a passport? Just tell me where you want to go and I'll handle the rest. No more 3am Googling sessions!",
       isUser: false,
       timestamp: new Date()
     }
@@ -31,7 +32,6 @@ const ChatInterface: React.FC = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
-  const [showExamples] = useState(true);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const API_BASE_URL = 'https://travel-chatbot-ten.vercel.app';
@@ -101,78 +101,91 @@ const ChatInterface: React.FC = () => {
     }
   };
 
-  const handleExampleClick = (exampleMessage: string) => {
-    sendMessage(exampleMessage);
+  const handleQuickMessage = (message: string) => {
+    sendMessage(message);
   };
 
-  const exampleMessages = [
-    'Book a trip from Porto to London next weekend for 3 days under 500 euros',
-    'I want to go from NYC to Paris on December 15th for a week',
-    'Find me a flight and hotel from Madrid to Rome'
+  const quickMessages = [
+    '🌍 Travelling to Lisbon',
+    '✈️ Flying from Heathrow',
+    '🏨 Staying near the beach',
+    '💻 Coworking space with WiFi'
   ];
 
   return (
-    <div className="chat-container">
+    <div className="chat-interface">
+      {/* Header */}
       <div className="chat-header">
-        <h1>✈️ Your AI Travel Buddy</h1>
-        <p>Stop Googling. Start Going. Let's plan your next adventure! 🌍</p>
-      </div>
-
-      <div className="chat-messages">
-        {messages.map((message) => (
-          <div key={message.id} className={`message ${message.isUser ? 'user' : 'bot'}`}>
-            <div className="message-avatar">
-              {message.isUser ? '👤' : '🤖'}
-            </div>
-            <div className="message-content">
-              {message.content}
-            </div>
+        <div className="header-content">
+          <div className="header-avatar">
+            <img src={logo} alt="Say It. Sorted" className="header-logo" />
           </div>
-        ))}
-        <div ref={messagesEndRef} />
-      </div>
-
-      <div className="status connected">
-        ✅ Connected to your AI travel buddy
-      </div>
-
-      {showExamples && (
-        <div className="examples">
-          <h3>Try these examples:</h3>
-          <div className="example-buttons">
-            {exampleMessages.map((example, index) => (
-              <button
-                key={index}
-                className="example-button"
-                onClick={() => handleExampleClick(example)}
-                disabled={isLoading}
-              >
-                {example}
-              </button>
-            ))}
+          <div className="header-info">
+            <h1>Your AI Travel Buddy</h1>
+            <p>Online • Type It. Sorted.</p>
+          </div>
+          <div className="connection-status">
+            <div className="status-dot"></div>
           </div>
         </div>
-      )}
+      </div>
 
-      <form onSubmit={handleSubmit} className="chat-input-form">
-        <div className="chat-input-container">
+      {/* Messages */}
+      <div className="messages-container">
+        <div className="messages">
+          {messages.map((message) => (
+            <div key={message.id} className={`message ${message.isUser ? 'user' : 'bot'}`}>
+              <div className="message-bubble">
+                {message.content}
+              </div>
+            </div>
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
+      </div>
+
+      {/* Quick Actions */}
+      <div className="quick-actions">
+        <div className="quick-messages">
+          {quickMessages.map((msg, index) => (
+            <button
+              key={index}
+              className="quick-message-btn"
+              onClick={() => handleQuickMessage(msg)}
+              disabled={isLoading}
+            >
+              {msg}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Input */}
+      <div className="input-container">
+        <form onSubmit={handleSubmit} className="input-form">
           <input
             type="text"
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
             placeholder="Where's your laptop taking you?"
             disabled={isLoading}
-            className="chat-input"
+            className="message-input"
           />
           <button
             type="submit"
             disabled={!inputMessage.trim() || isLoading}
-            className="send-button"
+            className="send-btn"
           >
-            {isLoading ? '⏳' : '➤'}
+            {isLoading ? (
+              <div className="loading-spinner"></div>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+              </svg>
+            )}
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
