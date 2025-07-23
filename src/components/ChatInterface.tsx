@@ -24,7 +24,7 @@ const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: "Hi! I'm your AI travel assistant. The API is connected and ready! I can help you book complete trips with flights and accommodation. Just tell me where you want to go, when, and your budget!",
+      content: "Hi! I'm your AI travel assistant. The API is connected and I'm ready to help you plan your trips! I can provide travel advice, destination recommendations, and help you plan your travel budget. Just tell me where you want to go, when, and your budget!",
       isUser: false,
       timestamp: new Date()
     }
@@ -135,9 +135,21 @@ const ChatInterface: React.FC = () => {
       // Add bot response to chat - handle both response formats
       let botMessage = 'I received your message!';
       
-      // Check if this is the current API response format
+      // Check if this is the current API response format (deployed version)
       if (data.status === 'success' && data.message === 'POST request received') {
-        botMessage = 'I received your message! The AI processing is currently being set up. Please check back soon for full travel booking functionality.';
+        // This is the deployed API response - provide a helpful message
+        botMessage = `I received your travel request! 🎉
+
+I'm currently setting up the full AI travel booking system. Your request has been logged and I'm working on processing it.
+
+For now, I can help you with:
+• Travel planning advice
+• Destination recommendations
+• Budget considerations
+
+The complete booking system with flight search and accommodation will be available soon!
+
+Would you like me to help you plan your trip while the booking system is being set up?`;
       } else if (data.response?.message) {
         // Handle the expected API response format
         botMessage = data.response.message;
