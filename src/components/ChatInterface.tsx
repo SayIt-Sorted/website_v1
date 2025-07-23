@@ -9,8 +9,11 @@ interface Message {
 }
 
 interface ChatResponse {
-  session_id: string;
-  response: {
+  status: string;
+  message: string;
+  path: string;
+  session_id?: string;
+  response?: {
     type: string;
     message: string;
     session_id: string;
@@ -124,20 +127,26 @@ const ChatInterface: React.FC = () => {
 
       const data: ChatResponse = await response.json();
       
-      // Handle the new API response format
+      // Handle the API response format
       if (data.session_id) {
         setSessionId(data.session_id);
       }
       
-      // Add bot response to chat - use the response.message
-      const botMessage = data.response?.message || 'I received your message!';
+      // Add bot response to chat - handle both response formats
+      let botMessage = 'I received your message!';
       
-      // Check if this is just an acknowledgment response
-      if (data.response?.message === 'POST request received') {
-        addMessage('I received your message! The AI processing is currently being set up. Please check back soon for full travel booking functionality.');
-      } else {
-        addMessage(botMessage);
+      // Check if this is the current API response format
+      if (data.status === 'success' && data.message === 'POST request received') {
+        botMessage = 'I received your message! The AI processing is currently being set up. Please check back soon for full travel booking functionality.';
+      } else if (data.response?.message) {
+        // Handle the expected API response format
+        botMessage = data.response.message;
+      } else if (data.message) {
+        // Handle fallback message
+        botMessage = data.message;
       }
+      
+      addMessage(botMessage);
 
       // If this was a complete request, show a new session message
       if (data.response?.type === 'complete') {
