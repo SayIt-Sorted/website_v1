@@ -53,6 +53,12 @@
   flex: 1;
 }
 
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .header-info h1 {
   font-size: 18px;
   font-weight: 700;
@@ -68,17 +74,13 @@
   font-weight: 500;
 }
 
-.connection-status {
-  display: flex;
-  align-items: center;
-}
-
 .status-dot {
   width: 8px;
   height: 8px;
   background: #48bb78;
   border-radius: 50%;
   animation: pulse 2s infinite;
+  flex-shrink: 0;
 }
 
 @keyframes pulse {

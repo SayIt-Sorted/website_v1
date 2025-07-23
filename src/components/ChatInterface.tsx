@@ -121,11 +121,11 @@ const ChatInterface: React.FC = () => {
             <img src={logo} alt="Say It. Sorted" className="header-logo" />
           </div>
           <div className="header-info">
-            <h1>Your AI Travel Buddy</h1>
+            <div className="title-row">
+              <h1>Your AI Travel Buddy</h1>
+              <div className="status-dot"></div>
+            </div>
             <p>Online • Type It. Sorted.</p>
-          </div>
-          <div className="connection-status">
-            <div className="status-dot"></div>
           </div>
         </div>
       </div>
