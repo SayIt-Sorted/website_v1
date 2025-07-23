@@ -31,13 +31,11 @@ const ChatInterface: React.FC = () => {
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isConnected, setIsConnected] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
-  const [showExamples, setShowExamples] = useState(false);
+  const [showExamples] = useState(true);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  // Updated to use the deployed API URL
-  const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://travel-chatbot-ten.vercel.app';
+  const API_BASE_URL = 'https://travel-chatbot-ten.vercel.app';
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -46,49 +44,6 @@ const ChatInterface: React.FC = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-
-  useEffect(() => {
-    checkConnection();
-    const interval = setInterval(checkConnection, 30000);
-    return () => clearInterval(interval);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const checkConnection = async () => {
-    try {
-      // Updated to use the correct health endpoint for the deployed API
-      const response = await fetch(`${API_BASE_URL}/api/health`);
-      if (response.ok) {
-        setIsConnected(true);
-        setShowExamples(true);
-      } else {
-        throw new Error('Backend not responding');
-      }
-    } catch (error) {
-      // If health check fails, try the main chat endpoint to see if API is available
-      try {
-        const testResponse = await fetch(`${API_BASE_URL}/api/chat`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            message: 'test',
-            session_id: null
-          })
-        });
-        
-        if (testResponse.ok) {
-          setIsConnected(true);
-          setShowExamples(true);
-        } else {
-          throw new Error('API not responding');
-        }
-      } catch (testError) {
-        setIsConnected(false);
-        setShowExamples(false);
-      }
-    }
-  };
 
   const addMessage = (content: string, isUser: boolean = false) => {
     const newMessage: Message = {
@@ -101,7 +56,7 @@ const ChatInterface: React.FC = () => {
   };
 
   const sendMessage = async (message: string) => {
-    if (!message.trim() || !isConnected) return;
+    if (!message.trim()) return;
 
     // Add user message to chat
     addMessage(message, true);
@@ -109,7 +64,6 @@ const ChatInterface: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // Updated to use the correct chat endpoint for the deployed API
       const response = await fetch(`${API_BASE_URL}/api/chat`, {
         method: 'POST',
         headers: {
@@ -132,29 +86,16 @@ const ChatInterface: React.FC = () => {
         setSessionId(data.session_id);
       }
       
-      // Add bot response to chat - handle both response formats
+      // Get the bot message
       let botMessage = 'I received your message!';
       
-      // Check if this is the current API response format (deployed version)
-      if (data.status === 'success' && data.message === 'POST request received') {
-        // This is the deployed API response - use the actual AI response
-        botMessage = data.response?.message || 'I received your travel request! 🎉';
-      } else if (data.response?.message) {
-        // Handle the expected API response format
+      if (data.status === 'success' && data.response?.message) {
         botMessage = data.response.message;
       } else if (data.message) {
-        // Handle fallback message
         botMessage = data.message;
       }
       
       addMessage(botMessage);
-
-      // If this was a complete request, show a new session message
-      if (data.response?.type === 'complete') {
-        setTimeout(() => {
-          addMessage('Ready to plan another trip? Just tell me where you\'d like to go next!');
-        }, 1000);
-      }
 
     } catch (error) {
       console.error('Error:', error);
@@ -202,52 +143,47 @@ const ChatInterface: React.FC = () => {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className={`status ${isConnected ? 'connected' : 'error'}`}>
-        {isConnected 
-          ? '✅ Connected to travel chatbot API' 
-          : '❌ Cannot connect to API. Please check your connection.'
-        }
+      <div className="status connected">
+        ✅ Connected to travel chatbot API
       </div>
 
       {showExamples && (
-        <div className="example-messages">
-          <h4>💡 Try these examples:</h4>
-          {exampleMessages.map((example, index) => (
-            <div 
-              key={index}
-              className="example-message" 
-              onClick={() => handleExampleClick(example)}
-            >
-              {example}
-            </div>
-          ))}
+        <div className="examples">
+          <h3>Try these examples:</h3>
+          <div className="example-buttons">
+            {exampleMessages.map((example, index) => (
+              <button
+                key={index}
+                className="example-button"
+                onClick={() => handleExampleClick(example)}
+                disabled={isLoading}
+              >
+                {example}
+              </button>
+            ))}
+          </div>
         </div>
       )}
 
-      <div className="chat-input-container">
-        <form className="chat-input-form" onSubmit={handleSubmit}>
-          <input 
-            type="text" 
-            className="chat-input" 
-            placeholder="Tell me where you want to go..."
+      <form onSubmit={handleSubmit} className="chat-input-form">
+        <div className="chat-input-container">
+          <input
+            type="text"
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
-            disabled={isLoading || !isConnected}
-            autoComplete="off"
+            placeholder="Tell me where you want to go..."
+            disabled={isLoading}
+            className="chat-input"
           />
-          <button 
-            type="submit" 
-            className="send-button" 
-            disabled={isLoading || !isConnected || !inputMessage.trim()}
+          <button
+            type="submit"
+            disabled={!inputMessage.trim() || isLoading}
+            className="send-button"
           >
-            {isLoading ? (
-              <div className="loading"></div>
-            ) : (
-              <span>➤</span>
-            )}
+            {isLoading ? '⏳' : '➤'}
           </button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };
