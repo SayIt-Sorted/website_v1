@@ -1,4 +1,20 @@
-# Getting Started with Create React App
+# Say It. Sorted - Travel AI Website
+
+This is a React-based landing page for Say It. Sorted, an AI-powered travel planning service for remote workers and digital nomads.
+
+## API Configuration
+
+The frontend connects to a travel chatbot API. To configure the API endpoint:
+
+1. Create a `.env` file in the root directory
+2. Add your API URL:
+   ```
+   REACT_APP_API_URL=https://travel-chatbot-3ai3qvrip-joao-esteves-projects.vercel.app
+   ```
+
+The app will automatically use this API for the chat functionality.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
