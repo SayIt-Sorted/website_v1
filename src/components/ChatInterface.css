@@ -419,6 +419,8 @@
     right: 0;
     bottom: 0;
     max-width: none;
+    /* Account for device status bar/notch */
+    padding-top: env(safe-area-inset-top);
   }
   
   .chat-modal {
