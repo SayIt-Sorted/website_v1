@@ -19,10 +19,7 @@ const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
   return (
     <div className="chat-modal" onClick={handleBackdropClick}>
       <div className="chat-modal-content">
-        <button className="chat-modal-close" onClick={onClose}>
-          ✕
-        </button>
-        <ChatInterface />
+        <ChatInterface onClose={onClose} />
       </div>
     </div>
   );
