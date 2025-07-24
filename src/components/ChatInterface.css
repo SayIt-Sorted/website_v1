@@ -21,6 +21,7 @@
   padding: 16px 20px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
+  position: relative;
 }
 
 .header-content {
@@ -223,6 +224,8 @@
   background: white;
   border-top: 1px solid #e2e8f0;
   flex-shrink: 0;
+  /* Move input up to avoid browser search bar */
+  margin-top: auto;
 }
 
 .input-form {
@@ -342,7 +345,7 @@
 
 .chat-modal-close {
   position: absolute;
-  top: 20px;
+  top: 16px;
   right: 20px;
   background: white;
   border: none;
@@ -475,6 +478,8 @@
     flex-shrink: 0;
     /* Account for Safari's bottom bar and keyboard */
     padding-bottom: max(16px, env(safe-area-inset-bottom));
+    /* Add extra top margin to move input up */
+    margin-top: 20px;
   }
   
   .input-form {
@@ -540,6 +545,7 @@
   .input-container {
     padding: 10px 12px 14px;
     padding-bottom: max(14px, env(safe-area-inset-bottom));
+    margin-top: 16px;
   }
   
   .message-input {
@@ -593,5 +599,6 @@
   .input-container {
     padding: 8px 16px 12px;
     padding-bottom: max(12px, env(safe-area-inset-bottom));
+    margin-top: 12px;
   }
 } 
