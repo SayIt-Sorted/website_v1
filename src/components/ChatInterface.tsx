@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ChatInterface.css';
-import logo from '../logo.png';
+import logo from '../logo_white_background.png';
 
 interface Message {
   id: string;
