@@ -38,15 +38,46 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
   const [sessionId, setSessionId] = useState<string | null>(null);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const API_BASE_URL = 'https://travel-chatbot-ten.vercel.app';
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToBottomImmediate = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
+  };
+
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Handle mobile keyboard events
+  useEffect(() => {
+    const handleResize = () => {
+      // When viewport changes (keyboard appears/disappears), scroll to bottom
+      setTimeout(scrollToBottomImmediate, 100);
+    };
+
+    const handleFocus = () => {
+      // When input is focused (keyboard appears), scroll to bottom
+      setTimeout(scrollToBottomImmediate, 300);
+    };
+
+    window.addEventListener('resize', handleResize);
+    const inputElement = document.querySelector('.message-input') as HTMLInputElement;
+    if (inputElement) {
+      inputElement.addEventListener('focus', handleFocus);
+    }
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (inputElement) {
+        inputElement.removeEventListener('focus', handleFocus);
+      }
+    };
+  }, []);
 
   const addMessage = (content: string, isUser: boolean = false) => {
     const newMessage: Message = {
@@ -142,7 +173,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
       </div>
 
       {/* Messages */}
-      <div className="messages-container">
+      <div className="messages-container" ref={messagesContainerRef}>
         <div className="messages">
           {messages.map((message) => (
             <div key={message.id} className={`message ${message.isUser ? 'user' : 'bot'}`}>

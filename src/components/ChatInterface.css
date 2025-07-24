@@ -126,6 +126,8 @@
   overflow: hidden;
   position: relative;
   min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .messages {
@@ -133,6 +135,8 @@
   overflow-y: auto;
   padding: 20px;
   scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
 }
 
 .messages::-webkit-scrollbar {
@@ -258,7 +262,7 @@
   /* Move input up to avoid browser search bar */
   margin-top: auto;
   /* Add extra bottom padding to avoid browser search bar */
-  padding-bottom: 80px;
+  padding-bottom: 85px;
 }
 
 .input-form {
@@ -494,7 +498,7 @@
     padding: 8px 16px 16px;
     flex-shrink: 0;
     /* Add more bottom padding for keyboard space and browser search bar */
-    padding-bottom: 100px;
+    padding-bottom: 105px;
     max-width: none;
   }
   
@@ -571,7 +575,7 @@
   .input-container {
     padding: 6px 12px 14px;
     /* Extra padding for browser search bar on small screens */
-    padding-bottom: 80px;
+    padding-bottom: 85px;
     max-width: none;
   }
   
@@ -635,6 +639,6 @@
   
   .input-container {
     padding: 6px 16px 12px;
-    padding-bottom: 40px;
+    padding-bottom: 45px;
   }
 } 
