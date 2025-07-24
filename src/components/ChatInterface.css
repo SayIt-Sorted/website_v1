@@ -423,7 +423,14 @@
     bottom: 0;
     max-width: none;
     /* Account for device status bar/notch */
-    padding-top: env(safe-area-inset-top, 0px);
+    padding-top: max(env(safe-area-inset-top, 0px), 20px);
+  }
+  
+  /* Fallback for devices that don't support safe-area-inset */
+  @supports not (padding-top: env(safe-area-inset-top)) {
+    .chat-interface {
+      padding-top: 20px;
+    }
   }
   
   .chat-modal {
@@ -444,7 +451,14 @@
     padding: 20px 16px 16px;
     flex-shrink: 0;
     /* Add extra top padding for devices with status bars */
-    padding-top: calc(20px + env(safe-area-inset-top, 0px));
+    padding-top: calc(20px + max(env(safe-area-inset-top, 0px), 20px));
+  }
+  
+  /* Fallback for devices that don't support safe-area-inset */
+  @supports not (padding-top: env(safe-area-inset-top)) {
+    .chat-header {
+      padding-top: 40px;
+    }
   }
   
   .header-avatar {
@@ -543,7 +557,7 @@
   .chat-header {
     padding: 16px 12px 12px;
     /* Add extra top padding for devices with status bars */
-    padding-top: calc(16px + env(safe-area-inset-top, 0px));
+    padding-top: calc(16px + max(env(safe-area-inset-top, 0px), 20px));
   }
   
   .header-avatar {
@@ -620,7 +634,7 @@
   .chat-header {
     padding: 16px 16px 12px;
     /* Add extra top padding for devices with status bars */
-    padding-top: calc(16px + env(safe-area-inset-top, 0px));
+    padding-top: calc(16px + max(env(safe-area-inset-top, 0px), 20px));
   }
   
   .header-avatar {
