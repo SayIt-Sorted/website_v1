@@ -3,7 +3,7 @@
   width: 100%;
   max-width: 900px;
   height: 100vh;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -15,12 +15,12 @@
 
 /* Header */
 .chat-header {
-  background: white;
-  border-bottom: 1px solid #e2e8f0;
+  background: #667eea;
+  color: white;
   padding: 16px 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
   position: relative;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
 
 .header-content {
@@ -35,7 +35,7 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  background: white;
+  background: rgba(255, 255, 255, 0.2);
   border: none;
   border-radius: 50%;
   width: 32px;
@@ -45,14 +45,14 @@
   align-items: center;
   justify-content: center;
   font-size: 16px;
-  color: #333;
+  color: white;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
   z-index: 1001;
 }
 
 .close-btn:hover {
-  background: #f0f0f0;
+  background: rgba(255, 255, 255, 0.3);
   transform: translateY(-50%) scale(1.1);
 }
 
@@ -64,14 +64,15 @@
 .header-avatar {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 20px;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  backdrop-filter: blur(10px);
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .header-logo {
@@ -94,14 +95,14 @@
 .header-info h1 {
   font-size: 18px;
   font-weight: 700;
-  color: #1a202c;
+  color: white;
   margin: 0;
   line-height: 1.2;
 }
 
 .header-info p {
   font-size: 13px;
-  color: #718096;
+  color: rgba(255, 255, 255, 0.8);
   margin: 2px 0 0 0;
   font-weight: 500;
 }
@@ -113,6 +114,7 @@
   border-radius: 50%;
   animation: pulse 2s infinite;
   flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(72, 187, 120, 0.5);
 }
 
 @keyframes pulse {
@@ -128,13 +130,13 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
+  background: #f8fafc;
 }
 
 .messages {
   height: 100%;
   overflow-y: auto;
   padding: 20px;
-  padding-top: 12px; /* Reduce top padding to account for quick actions margin */
   scroll-behavior: smooth;
   display: flex;
   flex-direction: column;
@@ -176,16 +178,16 @@
 .message.bot .message-bubble {
   background: white;
   color: #2d3748;
-  border: 1px solid #e2e8f0;
+  border: none;
   border-bottom-left-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .message.user .message-bubble {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #667eea;
   color: white;
   border-bottom-right-radius: 6px;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
 }
 
 @keyframes messageSlideIn {
@@ -205,7 +207,7 @@
   background: white;
   border-top: 1px solid #e2e8f0;
   flex-shrink: 0;
-  margin-bottom: 8px; /* Add space between quick actions and messages */
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .quick-messages {
@@ -229,7 +231,7 @@
 }
 
 .quick-message-btn {
-  background: #f7fafc;
+  background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 20px;
   padding: 8px 16px;
@@ -243,11 +245,11 @@
 }
 
 .quick-message-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #667eea;
   color: white;
   border-color: #667eea;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
 }
 
 .quick-message-btn:disabled {
@@ -257,21 +259,18 @@
 
 /* Input */
 .input-container {
-  padding: 16px 20px 20px;
+  padding: 16px 20px;
   background: white;
   border-top: 1px solid #e2e8f0;
   flex-shrink: 0;
-  /* Move input up to avoid browser search bar */
-  margin-top: auto;
-  /* Add extra bottom padding to avoid browser search bar */
-  padding-bottom: 85px;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .input-form {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #f7fafc;
+  background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 24px;
   padding: 4px;
@@ -281,7 +280,7 @@
 .input-form:focus-within {
   border-color: #667eea;
   background: white;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
 }
 
 .message-input {
@@ -311,7 +310,7 @@
 }
 
 .send-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #667eea;
   color: white;
   border: none;
   border-radius: 50%;
@@ -322,7 +321,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
   flex-shrink: 0;
 }
 
@@ -333,7 +332,7 @@
 
 .send-btn:hover:not(:disabled) {
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 .send-btn:disabled {
@@ -404,13 +403,8 @@
 @media (max-width: 768px) {
   .chat-interface {
     height: 100vh;
-    max-height: none;
     border-radius: 0;
     margin: 0;
-    /* Use actual viewport height, not dynamic */
-    height: 100vh;
-    min-height: 100vh;
-    /* Prevent Safari from adding extra space */
     position: fixed;
     top: 0;
     left: 0;
@@ -434,11 +428,8 @@
   }
   
   .chat-header {
-    padding: 8px 16px;
+    padding: 12px 16px;
     flex-shrink: 0;
-    /* Minimal top padding to move input higher */
-    padding-top: 8px;
-    max-width: none;
   }
   
   .header-avatar {
@@ -464,13 +455,12 @@
   }
   
   .messages-container {
-    margin-top: 60px; /* Adjusted for smaller header */
-    margin-bottom: 120px; /* Adjusted for mobile */
+    flex: 1;
+    overflow: hidden;
   }
   
   .messages {
     padding: 16px;
-    padding-top: 8px; /* Reduce top padding to account for quick actions margin */
     /* Ensure messages area is flexible */
     flex: 1;
     min-height: 0;
@@ -485,8 +475,6 @@
   .quick-actions {
     padding: 12px 16px;
     flex-shrink: 0;
-    max-width: none;
-    margin-bottom: 8px; /* Add space between quick actions and messages */
   }
   
   .quick-messages {
@@ -500,11 +488,8 @@
   }
   
   .input-container {
-    padding: 8px 16px 16px;
+    padding: 16px;
     flex-shrink: 0;
-    /* Add more bottom padding for keyboard space and browser search bar */
-    padding-bottom: 120px;
-    max-width: none;
   }
   
   .input-form {
@@ -580,7 +565,7 @@
   .input-container {
     padding: 6px 12px 14px;
     /* Extra padding for browser search bar on small screens */
-    padding-bottom: 100px;
+    padding-bottom: 85px;
     max-width: none;
   }
   
@@ -650,45 +635,4 @@
 
 
 
-/* Handle keyboard behavior on mobile */
-@media (max-width: 768px) {
-  .chat-interface {
-    /* Prevent background scrolling */
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
-  }
-  
-  .messages-container {
-    /* Ensure scrolling only happens within messages */
-    overflow: hidden;
-  }
-  
-  .messages {
-    /* Allow scrolling only within messages area */
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  /* When input is focused, reduce bottom padding */
-  .input-container:has(.message-input:focus) {
-    padding-bottom: 20px;
-    transition: padding-bottom 0.3s ease;
-  }
-  
-  /* Alternative for browsers that don't support :has() */
-  .input-container.input-focused {
-    padding-bottom: 20px;
-    transition: padding-bottom 0.3s ease;
-  }
-}
-
-/* Prevent body scrolling when chat modal is open */
-body.chat-modal-open {
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-} 
+ 
