@@ -11,6 +11,9 @@
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
+  /* Support for mobile safe areas */
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* Header */
@@ -420,7 +423,7 @@
     bottom: 0;
     max-width: none;
     /* Account for device status bar/notch */
-    padding-top: env(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top, 0px);
   }
   
   .chat-modal {
@@ -440,6 +443,8 @@
   .chat-header {
     padding: 20px 16px 16px;
     flex-shrink: 0;
+    /* Add extra top padding for devices with status bars */
+    padding-top: calc(20px + env(safe-area-inset-top, 0px));
   }
   
   .header-avatar {
@@ -537,6 +542,8 @@
 @media (max-width: 480px) {
   .chat-header {
     padding: 16px 12px 12px;
+    /* Add extra top padding for devices with status bars */
+    padding-top: calc(16px + env(safe-area-inset-top, 0px));
   }
   
   .header-avatar {
@@ -612,6 +619,8 @@
   
   .chat-header {
     padding: 16px 16px 12px;
+    /* Add extra top padding for devices with status bars */
+    padding-top: calc(16px + env(safe-area-inset-top, 0px));
   }
   
   .header-avatar {
