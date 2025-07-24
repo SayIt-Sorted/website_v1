@@ -36,9 +36,11 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
+  const [isInputFocused, setIsInputFocused] = useState(false);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const API_BASE_URL = 'https://travel-chatbot-ten.vercel.app';
 
   const scrollToBottom = () => {
@@ -63,18 +65,25 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
     const handleFocus = () => {
       // When input is focused (keyboard appears), scroll to bottom
       setTimeout(scrollToBottomImmediate, 300);
+      setIsInputFocused(true);
+    };
+
+    const handleBlur = () => {
+      setIsInputFocused(false);
     };
 
     window.addEventListener('resize', handleResize);
-    const inputElement = document.querySelector('.message-input') as HTMLInputElement;
+    const inputElement = inputRef.current;
     if (inputElement) {
       inputElement.addEventListener('focus', handleFocus);
+      inputElement.addEventListener('blur', handleBlur);
     }
 
     return () => {
       window.removeEventListener('resize', handleResize);
       if (inputElement) {
         inputElement.removeEventListener('focus', handleFocus);
+        inputElement.removeEventListener('blur', handleBlur);
       }
     };
   }, []);
@@ -203,9 +212,10 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
       </div>
 
       {/* Input */}
-      <div className="input-container">
+      <div className={`input-container ${isInputFocused ? 'input-focused' : ''}`}>
         <form onSubmit={handleSubmit} className="input-form">
           <input
+            ref={inputRef}
             type="text"
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
